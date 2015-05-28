@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Students-->
         <scene sceneID="8NK-ox-DKg">
             <objects>
                 <tableViewController id="jIG-mi-v8t" customClass="FISTableViewController" sceneMemberID="viewController">
@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="expandingCell" textLabel="f5b-A6-R3v" detailTextLabel="7ze-z9-CAf" style="IBUITableViewCellStyleValue1" id="0hr-Iu-dR9">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicCell" textLabel="f5b-A6-R3v" detailTextLabel="7ze-z9-CAf" style="IBUITableViewCellStyleValue1" id="0hr-Iu-dR9">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0hr-Iu-dR9" id="veb-jd-oi0">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -39,7 +39,7 @@
                             <outlet property="delegate" destination="jIG-mi-v8t" id="L3h-Pd-Cnk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="jYx-Cu-MSP"/>
+                    <navigationItem key="navigationItem" title="Students" id="jYx-Cu-MSP"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fU5-Jq-1oF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
