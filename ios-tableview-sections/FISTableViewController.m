@@ -11,6 +11,7 @@
 
 @interface FISTableViewController ()
 @property (strong, nonatomic) NSArray *students;
+@property (nonatomic) BOOL advanced; // set this to YES to see advanced.
 @end
 
 @implementation FISTableViewController
@@ -35,31 +36,61 @@
     mrk.favoriteThings = @[@"books/the english language", @"having a ponytail", @"Dungeons & Dragons", @"core data"];
     tim.favoriteThings = @[@"corgi puppies", @"sunshine", @"milkshakes", @"communism", @"banana dog"];
     joe.favoriteThings = @[@"PEANUT BUTTER", @"the idea of hiring an IT person", @"woodworking", @"teaching", @"barcade"];
-    
+
     self.students = @[tom, jim, mrk, tim, joe];
+    
+    self.advanced = NO; // HERE'S WHERE YOU SPECIFY ADVANCED
+    
+    if (self.advanced)
+        [self setupAdvancedPropertiesForStudents:@[tom, jim, mrk, tim, joe]];
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return [self.students count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (self.advanced)
+        return 4;
+    
     FISStudent *thisSectionsStudent = self.students[section];
-
     return [thisSectionsStudent.favoriteThings count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
     
     FISStudent *thisSectionsStudent = self.students[indexPath.section];
+    
     NSString *thisFavoriteThing = thisSectionsStudent.favoriteThings[indexPath.row];
     cell.textLabel.text = thisFavoriteThing;
     cell.detailTextLabel.text = [NSString stringWithFormat: @"%ld", indexPath.row + 1];
+    
+    
+    if (self.advanced){
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = [NSString stringWithFormat: @"Food: %@", thisSectionsStudent.favoriteFood];
+                break;
+            case 1:
+                cell.textLabel.text = [NSString stringWithFormat: @"Color: %@", thisSectionsStudent.favoriteColor];
+                break;
+            case 2:
+                cell.textLabel.text = [NSString stringWithFormat: @"Musical Artist: %@", thisSectionsStudent.favoriteMusicalArtist];
+                break;
+            case 3:
+                cell.textLabel.text = [NSString stringWithFormat: @"Game: %@", thisSectionsStudent.favoriteGame];
+                break;
+            default:
+                cell.textLabel.text = @"Fix numberOfRowsInSection";
+                break;
+        }
+    }
     
     return cell;
 }
@@ -74,48 +105,47 @@
     return 2;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - Helper
+
+-(void)setupAdvancedPropertiesForStudents: (NSArray*) students
+{
+    for (FISStudent* student in students)
+    {
+        if([student.name isEqualToString:@"Tom"])
+        {
+            student.favoriteFood = @"Chicken/Cheese";
+            student.favoriteColor = @"Red";
+            student.favoriteMusicalArtist = @"Albert Hammond Jr.";
+            student.favoriteGame = @"LoZ: Ocarina Of Time";
+        }
+        else if([student.name isEqualToString:@"Jimmy C"])
+        {
+            student.favoriteFood = @"Penne alla Vodka";
+            student.favoriteColor = @"Purple";
+            student.favoriteMusicalArtist = @"Phil Collins";
+            student.favoriteGame = @"Starcraft";
+        }
+        else if([student.name isEqualToString:@"Mark"])
+        {
+            student.favoriteFood = @"Corned Beef";
+            student.favoriteColor = @"Green";
+            student.favoriteMusicalArtist = @"Ryan Adams";
+            student.favoriteGame = @"Milles Borne";
+        }
+        else if([student.name isEqualToString:@"Tim"])
+        {
+            student.favoriteFood = @"Cheesecake";
+            student.favoriteColor = @"Blue";
+            student.favoriteMusicalArtist = @"Destroyer";
+            student.favoriteGame = @"Secret Of Mana";
+        }
+        else if([student.name isEqualToString:@"Joseph M. Burgess"])
+        {
+            student.favoriteFood = @"Peanut butter";
+            student.favoriteColor = @"Red";
+            student.favoriteMusicalArtist = @"Odesza";
+            student.favoriteGame = @"Danger / sometimes 'Dots'";
+        }
+    }
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

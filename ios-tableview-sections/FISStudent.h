@@ -11,4 +11,11 @@
 @interface FISStudent : NSObject
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *favoriteThings;
+
+// ADVANCED
+@property (strong, nonatomic) NSString *favoriteFood;
+@property (strong, nonatomic) NSString *favoriteColor;
+@property (strong, nonatomic) NSString *favoriteMusicalArtist;
+@property (strong, nonatomic) NSString *favoriteGame;
+
 @end
