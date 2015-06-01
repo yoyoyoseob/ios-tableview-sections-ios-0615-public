@@ -35,10 +35,6 @@ describe(@"FISTableViewController", ^{
         NSInteger indentationLevel = [fisTVC.tableView.delegate tableView:fisTVC.tableView indentationLevelForRowAtIndexPath:indexPath];
         expect(indentationLevel).toNot.equal(0);
     });
-    
-    it(@"", ^{
-        
-    });
 });
 
 SpecEnd
