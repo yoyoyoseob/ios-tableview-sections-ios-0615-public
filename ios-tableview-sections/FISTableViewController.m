@@ -85,13 +85,12 @@
                 break;
             case 3:
                 cell.textLabel.text = [NSString stringWithFormat: @"Game: %@", thisSectionsStudent.favoriteGame];
-                break;
+            break;
             default:
                 cell.textLabel.text = @"Fix numberOfRowsInSection";
                 break;
         }
     }
-    
     return cell;
 }
 
