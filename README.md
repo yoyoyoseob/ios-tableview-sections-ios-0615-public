@@ -14,10 +14,10 @@ We've been working with tableviews, but so far we've only put out a unified list
    5. Set these students to your TVcontroller's `students` property.
    6. Set up your tableView to match the following:     
       * each student should have their own section (*hint:* `numberOfSectionsInTableView:`)
-      * set up `numberOfRowsInSection:` so that the rows in each section match that student's `favoriteThings`.
+      * set up `tableView:numberOfRowsInSection:` so that the rows in each section match that student's `favoriteThings`.
       * set your cell's `textLabel` to a favorite thing, and its `detailTextLabel` to its row index. 
-   7. Cool, everyone's favorite things are listed, but theres no distinction between sections... implement `titleForSectionAtIndexPath:` using the student's `name` property.
-   8. Houston, we have sections! But this is still kinda hard to read, it's just a big list of text after all. Implement `indentationLevelForRowAtIndexPath:` to clean it up a bit.
+   7. Cool, everyone's favorite things are listed, but theres no distinction between sections... implement `tableView:titleForSectionAtIndexPath:` using the student's `name` property.
+   8. Houston, we have sections! But this is still kinda hard to read, it's just a big list of text after all. Implement `tableView:indentationLevelForRowAtIndexPath:` to clean it up a bit.
       
 ## Advanced
 Add the following properties to your `FISStudent`:
