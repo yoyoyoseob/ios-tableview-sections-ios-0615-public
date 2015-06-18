@@ -18,10 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    FISStudent *Nic = [[FISStudent alloc]initWithName:@"Nic" andFavThings:@[@"chocolate", @"puppies", @"toothpaste", @"mint sticks", @"Black Eyed Peas"]];
-    FISStudent *Gan = [[FISStudent alloc]initWithName:@"Gan" andFavThings:@[@"food", @"Bon Jovi", @"steak", @"Atlanta", @"Georgia", @"southern fried steak"]];
-    FISStudent *Cong = [[FISStudent alloc]initWithName:@"Cong" andFavThings:@[@"Apple Watch", @"fruit cups", @"One Direction", @"coding", @"long walks on the beach"]];
-    FISStudent *Leo = [[FISStudent alloc]initWithName:@"Leo" andFavThings:@[@"Rihanna", @"Flatiron School", @"the next big thing", @"celery and peanut butter", @"paninis"]];
+    FISStudent *Nic = [[FISStudent alloc]initWithName:@"Nic" favFood:@"Pizza" favColor:@"Green" favMusicalArtist:@"Weird Al" favGame:@"Tetris" inFavThings:@[]];
+    
+    FISStudent *Gan = [[FISStudent alloc]initWithName:@"Gan" favFood:@"Steak" favColor:@"Purple" favMusicalArtist:@"Nirvana" favGame:@"Solitaire" inFavThings:@[]];
+
+    FISStudent *Cong = [[FISStudent alloc]initWithName:@"Cong" favFood:@"French Fries" favColor:@"Brown" favMusicalArtist:@"Miley Cyrus" favGame:@"Hearts" inFavThings:@[]];
+    
+    FISStudent *Leo = [[FISStudent alloc]initWithName:@"Leo" favFood:@"Salad" favColor:@"Blue" favMusicalArtist:@"Skrillex" favGame:@"Jenga" inFavThings:@[]];
     
     self.students = [@[Nic, Gan, Cong, Leo] mutableCopy];
 }
@@ -72,8 +75,21 @@
     
     FISStudent *placeholderStudent = self.students[cellSection];
     
-    cell.textLabel.text = placeholderStudent.favoriteThings[cellRow];
-    cell.detailTextLabel.text = [[NSNumber numberWithInteger:cellRow + 1] stringValue];
+    NSDictionary *favorites = placeholderStudent.favoriteThings[cellRow];
+    for (id key in favorites){
+        cell.textLabel.text = key;
+        cell.detailTextLabel.text = [favorites objectForKey:key];
+    }
+//    
+//    
+//    for (NSDictionary *favorites in placeholderStudent.favoriteThings){
+//        for (id key in favorites){
+//            cell.textLabel.text = key;
+//            cell.detailTextLabel.text = [favorites objectForKey:key];
+//        }
+//    }
+//    cell.textLabel.text = placeholderStudent.favoriteThings[cellRow];
+//    cell.detailTextLabel.text = [[NSNumber numberWithInteger:cellRow + 1] stringValue];
     // Configure the cell...
     
     return cell;

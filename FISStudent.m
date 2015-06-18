@@ -11,19 +11,27 @@
 @implementation FISStudent
 
 -(instancetype)init{
-    self = [self initWithName:@"" andFavThings:@[]];
+    self = [self initWithName:@"" favFood:@"" favColor:@"" favMusicalArtist:@"" favGame:@"" inFavThings:@[]];
     return self;
 }
 
--(instancetype)initWithName:(NSString *)name andFavThings:(NSArray *)favoriteThings;
+-(instancetype)initWithName:(NSString *)name
+                    favFood:(NSString *)food
+                   favColor:(NSString *)color
+           favMusicalArtist:(NSString *)artist
+                    favGame:(NSString *)game
+                inFavThings:(NSArray *)favoriteThings
 {
     self = [super init];
     if (self){
         _name = name;
-        _favoriteThings = [NSArray arrayWithArray:favoriteThings];
+        _favoriteColor = @{@"Favorite Color": color};
+        _favoriteFood = @{@"Favorite Food": food};
+        _favoriteMusicalArtist = @{@"Favorite Musical Artist": artist};
+        _favoriteGame = @{@"Favorite Game": game};
+        _favoriteThings = @[_favoriteColor, _favoriteFood, _favoriteMusicalArtist, _favoriteGame];
     }
     return self;
 }
-
 
 @end
